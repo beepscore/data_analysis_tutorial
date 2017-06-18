@@ -3,6 +3,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
+import numpy as np
 
 style.use('ggplot')
 
@@ -11,9 +12,34 @@ style.use('ggplot')
 # https://en.wikipedia.org/wiki/Bounce_rate
 web_stats = {'Day':[1,2,3,4,5,6],
              'Visitors':[43,34,65,56,29,76],
-             'Bounce Rate':[65,67,78,65,45,52]}
+             'Bounce_Rate':[65,67,78,65,45,52]}
 
 df = pd.DataFrame(web_stats)
 
-print(df.head)
-print(df.tail)
+# set_index returns a new data frame
+# can assign df to it using df = or using inplace
+# df.set_index('Day', inplace=True)
+df = df.set_index('Day')
+
+# print(df.head)
+# show last 2 rows
+# print(df.tail(2))
+
+# dataframe select a column, similar to dictionary
+# print(df['Bounce_Rate'])
+# shorthand, select a column similar to an attribute
+# print(df.Visitors)
+print(df.Visitors.tolist())
+
+# make a data frame from a list of columns
+print(df[['Visitors', 'Bounce_Rate']])
+
+# create numpy array from pandas data frame
+# this loses column headings that were in data frame
+visit_bounce_array = np.array(df[['Visitors', 'Bounce_Rate']])
+print(visit_bounce_array)
+
+# create pandas data frame from numpy array
+df2 = pd.DataFrame(visit_bounce_array)
+print(df2)
+
