@@ -4,8 +4,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
+import quandl
 
 style.use('ggplot')
+
+# For security keep quandl api key out of version control.
+# read api key from a file that is ignored.
+# input_directory = "../data/input/"
+# input_file_name = 'quandl_api_key.txt'
+# input_file_path = input_directory + input_file_name
+# rstrip to remove trailing \n
+# quandl_api_key = open(input_file_path, 'r').read().rstrip()
+# print('quandl_api_key', quandl_api_key)
 
 # bounce rate is percent of visitors who come to web site page and leave without visiting any other pages
 # industry average is roughly 66%
@@ -43,3 +53,5 @@ print(visit_bounce_array)
 df2 = pd.DataFrame(visit_bounce_array)
 print(df2)
 
+houses = quandl.get('FMAC/HPI_AK')
+print(houses.head)
