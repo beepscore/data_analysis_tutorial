@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
 import quandl
-from bs4 import BeautifulSoup
 
 style.use('ggplot')
 
@@ -58,7 +57,7 @@ houses = quandl.get('FMAC/HPI_AK')
 print(houses.head)
 
 # us_states_list is a list of dataframes
-us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='bs4')
+us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='html5lib')
 print(us_states_list)
 print(us_states_list[0])
 
