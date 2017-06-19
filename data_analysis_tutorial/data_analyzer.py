@@ -54,16 +54,20 @@ df2 = pd.DataFrame(visit_bounce_array)
 # print(df2)
 
 houses = quandl.get('FMAC/HPI_AK')
-print(houses.head)
+# print(houses.head)
 
+# https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial
 # us_states_list is a list of dataframes
 us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='html5lib')
-print(us_states_list)
-print(us_states_list[0])
+# print(us_states_list)
+# print(us_states_list[0])
 
 # first dataframe
 us_states_df = us_states_list[0]
 
 # column 1 to end (omit column 0)
-us_states = us_states_df[1:]
-print(us_states)
+# us_states = us_states_df[1:]
+# for abbv in us_states[1:]:
+
+for abbv in us_states_list[0][0][1:]:
+    print("FMAC/HPI_" + str(abbv))
