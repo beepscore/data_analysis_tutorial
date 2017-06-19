@@ -24,4 +24,5 @@ Installed matplotlib in machine_learning.
 
 ## Appendix - run program
 
+    cd data_analysis_tutorial
     python3 data_analysis_tutorial/data_analyzer.py
