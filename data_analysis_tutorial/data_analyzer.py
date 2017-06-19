@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
 import quandl
+from bs4 import BeautifulSoup
 
 style.use('ggplot')
 
@@ -47,11 +48,23 @@ print(df[['Visitors', 'Bounce_Rate']])
 # create numpy array from pandas data frame
 # this loses column headings that were in data frame
 visit_bounce_array = np.array(df[['Visitors', 'Bounce_Rate']])
-print(visit_bounce_array)
+# print(visit_bounce_array)
 
 # create pandas data frame from numpy array
 df2 = pd.DataFrame(visit_bounce_array)
-print(df2)
+# print(df2)
 
 houses = quandl.get('FMAC/HPI_AK')
 print(houses.head)
+
+# us_states_list is a list of dataframes
+us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='bs4')
+print(us_states_list)
+print(us_states_list[0])
+
+# first dataframe
+us_states_df = us_states_list[0]
+
+# column 1 to end (omit column 0)
+us_states = us_states_df[1:]
+print(us_states)
