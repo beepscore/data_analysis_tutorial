@@ -14,13 +14,19 @@ https://www.youtube.com/playlist?list=PLQVvvaa0QuDc-3szzjeP6N6b0aDrrKyL-
 looks similar to a spreadsheet
 
 ## Appendix - Anaconda
-I used Anaconda navigator. Created environment machine_learning.
 
-matplotlib was in environment root, but not in machine_learning.
-Installed matplotlib in machine_learning.
+Anaconda navigator environment beepscore.
+Installed several packages as listed in requirements.txt
+e.g. matplotlib was in environment root, but not in beepscore.
+
+### activate conda environment
+#### 2017-09-02
+Using Anaconda 4.4.0 which comes with Python 3.6.1
+
+In terminal  
 
     cd data_analysis_tutorial
-    source activate machine_learning
+    source activate beepscore
 
 ## Appendix - run program
 
