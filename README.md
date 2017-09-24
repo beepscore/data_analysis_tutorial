@@ -10,8 +10,14 @@ https://www.youtube.com/playlist?list=PLQVvvaa0QuDc-3szzjeP6N6b0aDrrKyL-
 
 # Results
 
+## intro
+
+## Pandas Basics - p.2 Data Analysis with Python and Pandas Tutorial
+https://youtu.be/0UA49Ds1XXo
+
 ## data frame
 looks similar to a spreadsheet
+can reference similar to a python dictionary
 
 ## Appendix - Anaconda
 
