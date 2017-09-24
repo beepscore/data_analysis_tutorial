@@ -82,3 +82,10 @@ print('add header names and set index_col')
 print(df.head())
 
 df.to_html("./data/output/zillow_date_index_houston_no_header.html")
+
+# rename one column
+df = pd.read_csv("./data/output/zillow_date_index_houston_no_header.csv", names=['Date', 'Houston_HPI'])
+df.rename(columns={'Houston_HPI':'77006_HPI'}, inplace=True)
+print()
+print('rename one column')
+print(df.head())
