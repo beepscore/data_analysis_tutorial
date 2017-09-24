@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Pandas Basics - p.2 Data Analysis with Python and Pandas Tutorial
+# https://youtu.be/0UA49Ds1XXo
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import style
@@ -40,9 +43,20 @@ df = df.set_index('Day')
 # shorthand, select a column similar to an attribute
 # print(df.Visitors)
 print(df.Visitors.tolist())
+# output
+# [43, 34, 65, 56, 29, 76]
 
 # make a data frame from a list of columns
 print(df[['Visitors', 'Bounce_Rate']])
+# output
+#      Visitors  Bounce_Rate
+# Day
+# 1          43           65
+# 2          34           67
+# 3          65           78
+# 4          56           65
+# 5          29           45
+# 6          76           52
 
 # create numpy array from pandas data frame
 # this loses column headings that were in data frame
@@ -71,3 +85,10 @@ us_states_df = us_states_list[0]
 
 for abbv in us_states_list[0][0][1:]:
     print("FMAC/HPI_" + str(abbv))
+
+# output
+# FMAC/HPI_AL
+# FMAC/HPI_AK
+# FMAC/HPI_AZ
+# ...
+# FMAC/HPI_WY
