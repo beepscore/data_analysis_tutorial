@@ -24,7 +24,7 @@ import pandas as pd
 # print('quandl_api_key', quandl_api_key)
 
 # use quandl code ZILLOW/Z77006_MLPAH
-# quandl.get("ZILLOW/Z77006_MLPAH", authtoken="authtoken")
+# quandl.get("ZILLOW/Z77006_MLPAH", authtoken=quandl_api_key)
 # some requests don't need authtoken
 # houses = quandl.get('FMAC/HPI_AK')
 ###
