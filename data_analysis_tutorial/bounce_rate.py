@@ -26,7 +26,7 @@ df = pd.DataFrame(web_stats)
 # df.set_index('Day', inplace=True)
 df = df.set_index('Day')
 
-# print(df.head)
+# print(df.head())
 # tail- print last 2 rows
 # print(df.tail(2))
 

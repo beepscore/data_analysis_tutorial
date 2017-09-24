@@ -20,7 +20,7 @@ style.use('ggplot')
 # print('quandl_api_key', quandl_api_key)
 
 houses = quandl.get('FMAC/HPI_AK')
-# print(houses.head)
+# print(houses.head())
 
 # https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial
 # us_states_list is a list of dataframes
