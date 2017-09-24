@@ -4,16 +4,16 @@ Record info about tutorial Data Analysis with Python and Pandas.
 # References
 
 ## Data Analysis with Python and Pandas
+### intro
+https://pythonprogramming.net/data-analysis-python-pandas-tutorial-introduction/
+### Pandas Basics - p.2 Data Analysis with Python and Pandas Tutorial
 https://pythonprogramming.net/basics-data-analysis-python-pandas-tutorial
 
 https://www.youtube.com/playlist?list=PLQVvvaa0QuDc-3szzjeP6N6b0aDrrKyL-
 
-# Results
-
-## intro
-
-## Pandas Basics - p.2 Data Analysis with Python and Pandas Tutorial
 https://youtu.be/0UA49Ds1XXo
+
+# Results
 
 ## data frame
 looks similar to a spreadsheet
