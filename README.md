@@ -39,4 +39,4 @@ In terminal
 ## Appendix - run program
 
     cd data_analysis_tutorial
-    python3 data_analysis_tutorial/data_analyzer.py
+    python3 data_analysis_tutorial/2_pandas_basics.py
