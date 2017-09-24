@@ -38,6 +38,8 @@ import pandas as pd
 # for PyCharm configuration set working directory to project root e.g.
 # /Users/stevebaker/Documents/projects/pythonProjects/data_analysis_projects/data_analysis_tutorial
 df = pd.read_csv("./data/input/ZILLOW-Z77006_MLPAH.csv")
+print()
+print('read read ZILLOW-Z77006_MLPAH.csv')
 print(df.head())
 
 # change index from default consecutive integers to Date column
@@ -45,5 +47,21 @@ print(df.head())
 # alternatively could write df = df.set_index('Date')
 # or df2 = df.set_index('Date')
 df.set_index('Date', inplace=True)
+print()
+print('after set_index inplace=True')
+print(df.head())
 # output directory must exist, to_csv won't create one
 df.to_csv("./data/output/zillow_date_index.csv")
+
+# read output file (sic)
+df = pd.read_csv("./data/output/zillow_date_index.csv")
+print()
+print('read zillow_date_index.csv')
+# again pandas assigned default index, because a csv file doesn't have an attribute "index"
+print(df.head())
+
+# override default index
+df = pd.read_csv("./data/output/zillow_date_index.csv", index_col=0)
+print()
+print('read set index_col=0')
+print(df.head())
