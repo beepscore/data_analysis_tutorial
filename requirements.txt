@@ -1,5 +1,5 @@
-matplotlib
-html5lib
-beautifulsoup4 == 4.6.0
-quandl
+html5lib >= 0.999
+matplotlib >= 2.0.2
+pandas >= 0.20.3
+quandl >= 3.1.0
 
