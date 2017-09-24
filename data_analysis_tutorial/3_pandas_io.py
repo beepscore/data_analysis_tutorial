@@ -71,4 +71,6 @@ print(df.head())
 df.columns = ['Houston_HPI']
 print('set columns')
 print(df.head())
+
 df.to_csv("./data/output/zillow_date_index_houston.csv")
+df.to_csv("./data/output/zillow_date_index_houston_no_header.csv", header=False)
