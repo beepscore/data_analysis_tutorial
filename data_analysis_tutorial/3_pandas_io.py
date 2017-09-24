@@ -80,3 +80,5 @@ df = pd.read_csv("./data/output/zillow_date_index_houston_no_header.csv", names=
 print()
 print('add header names and set index_col')
 print(df.head())
+
+df.to_html("./data/output/zillow_date_index_houston_no_header.html")
