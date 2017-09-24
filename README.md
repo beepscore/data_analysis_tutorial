@@ -17,6 +17,8 @@ https://youtu.be/0UA49Ds1XXo
 
 ## data frame
 looks similar to a spreadsheet
+index- row labels
+columns- column labels
 can reference similar to a python dictionary
 
 ## Appendix - Anaconda
