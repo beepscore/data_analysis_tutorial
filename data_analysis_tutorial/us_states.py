@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-# IO Basics - p.3 Data Analysis with Python and Pandas Tutorial
-# https://pythonprogramming.net/input-output-data-analysis-python-pandas-tutorial/
+# Building dataset - p.4 Data Analysis with Python and Pandas Tutorial
+# https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial/
+
 # https://youtu.be/9Z7wvippeko
 
 import pandas as pd
@@ -18,7 +19,9 @@ style.use('ggplot')
 # rstrip to remove trailing \n
 # quandl_api_key = open(input_file_path, 'r').read().rstrip()
 # print('quandl_api_key', quandl_api_key)
+# houses = quandl.get('FMAC/HPI_AK', authtoken=quandl_api_key)
 
+# this api request doesn't require authtoken
 houses = quandl.get('FMAC/HPI_AK')
 # print(houses.head())
 
