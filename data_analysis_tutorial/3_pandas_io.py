@@ -69,8 +69,14 @@ print(df.head())
 # rename columns
 # index is not a column, don't include it in list
 df.columns = ['Houston_HPI']
+print()
 print('set columns')
 print(df.head())
 
 df.to_csv("./data/output/zillow_date_index_houston.csv")
 df.to_csv("./data/output/zillow_date_index_houston_no_header.csv", header=False)
+
+df = pd.read_csv("./data/output/zillow_date_index_houston_no_header.csv", names=['Date', 'Houston_HPI'], index_col=0)
+print()
+print('add header names and set index_col')
+print(df.head())
