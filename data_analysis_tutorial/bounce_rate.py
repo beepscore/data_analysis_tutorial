@@ -5,10 +5,8 @@
 # https://youtu.be/0UA49Ds1XXo
 
 import pandas as pd
-import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
-import quandl
 
 style.use('ggplot')
 
