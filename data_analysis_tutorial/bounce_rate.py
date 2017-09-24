@@ -12,15 +12,6 @@ import quandl
 
 style.use('ggplot')
 
-# For security keep quandl api key out of version control.
-# read api key from a file that is ignored.
-# input_directory = "../data/input/"
-# input_file_name = 'quandl_api_key.txt'
-# input_file_path = input_directory + input_file_name
-# rstrip to remove trailing \n
-# quandl_api_key = open(input_file_path, 'r').read().rstrip()
-# print('quandl_api_key', quandl_api_key)
-
 # bounce rate is percent of visitors who come to web site page and leave without visiting any other pages
 # industry average is roughly 66%
 # https://en.wikipedia.org/wiki/Bounce_rate
@@ -50,7 +41,6 @@ print(df.Visitors.tolist())
 # [43, 34, 65, 56, 29, 76]
 
 # note must manually close plot to enable script to continue
-# df['Visitors'] or df.Visitors
 # df.Visitors.plot()
 # plt.show()
 
@@ -75,28 +65,3 @@ visit_bounce_array = np.array(df[['Visitors', 'Bounce_Rate']])
 df2 = pd.DataFrame(visit_bounce_array)
 # print(df2)
 
-houses = quandl.get('FMAC/HPI_AK')
-# print(houses.head)
-
-# https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial
-# us_states_list is a list of dataframes
-us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='html5lib')
-# print(us_states_list)
-# print(us_states_list[0])
-
-# first dataframe
-us_states_df = us_states_list[0]
-
-# column 1 to end (omit column 0)
-# us_states = us_states_df[1:]
-# for abbv in us_states[1:]:
-
-for abbv in us_states_list[0][0][1:]:
-    print("FMAC/HPI_" + str(abbv))
-
-# output
-# FMAC/HPI_AL
-# FMAC/HPI_AK
-# FMAC/HPI_AZ
-# ...
-# FMAC/HPI_WY
