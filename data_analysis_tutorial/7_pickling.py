@@ -102,9 +102,17 @@ def grab_initial_state_data():
     # 2017-06-30  213.900185  216.341550
     # [510 rows x 2 columns]
 
+    # wb write bytes
     pickle_out = open('../data/output/states.pickle', 'wb')
     pickle.dump(main_df, pickle_out)
     pickle_out.close()
 
 
-grab_initial_state_data()
+# comment out after writing states.pickle
+# grab_initial_state_data()
+
+# read data from pickle
+# rb read bytes
+pickle_in = open('../data/output/states.pickle', 'rb')
+HPI_data = pickle.load(pickle_in)
+print(HPI_data)
