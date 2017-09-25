@@ -11,6 +11,13 @@ import quandl
 
 style.use('ggplot')
 
+# anonymous request, doesn't require authtoken
+# comment out to avoid quandl.errors.quandl_error.LimitExceededError: (Status 429)
+# You have exceeded the anonymous user limit of 50 calls per day.
+# To make more calls today, please register for a free Quandl account and then include your API key with your requests.
+# houses = quandl.get('FMAC/HPI_AK')
+
+# authtoken
 # For security keep quandl api key out of version control.
 # read api key from a file that is ignored.
 # input_directory = "../data/input/"
@@ -19,12 +26,10 @@ style.use('ggplot')
 # rstrip to remove trailing \n
 # quandl_api_key = open(input_file_path, 'r').read().rstrip()
 # print('quandl_api_key', quandl_api_key)
+
+# request with authtoken
 # houses = quandl.get('FMAC/HPI_AK', authtoken=quandl_api_key)
 
-# this api request doesn't require authtoken
-# comment out to avoid quandl.errors.quandl_error.LimitExceededError: (Status 429)
-# You have exceeded the anonymous user limit of 50 calls per day. To make more calls today, please register for a free Quandl account and then include your API key with your requests.
-# houses = quandl.get('FMAC/HPI_AK')
 # print(houses.head())
 
 # https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial
