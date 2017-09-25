@@ -19,29 +19,44 @@ input_file_path = input_directory + input_file_name
 # rstrip to remove trailing \n
 quandl_api_key = open(input_file_path, 'r').read().rstrip()
 
-# https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial
-# us_states_list is a list of dataframes
-us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='html5lib')
 
-# first dataframe
-us_states_df = us_states_list[0]
+def us_states50():
+    """
+    :return: pandas series of 50 US states as 2 letter abbreviations e.g. ['AK', 'AL'...]
+    """
+    # https://pythonprogramming.net/dataset-data-analysis-python-pandas-tutorial
+    # us_states_list is a list of dataframes
+    us_states_list = pd.read_html('https://simple.wikipedia.org/wiki/List_of_U.S._states', flavor='html5lib')
 
-abbreviation_series = us_states_df[0]
-# note series contains index and value, loop uses value
-# print('abbreviation_series')
-# print(abbreviation_series)
+    # first dataframe
+    us_states_df = us_states_list[0]
 
-# row 1 to end (omit row0, contains series name 'Abbreviation')
-abbreviations = abbreviation_series[1:]
-# print('abbreviations')
-# print(abbreviations)
+    abbreviation_series = us_states_df[0]
+    # print('abbreviation_series')
+    # print(abbreviation_series)
 
-# use 2 states to avoid quandl api speed limit
-us_states2 = ['OR', 'WA']
+    # slice row 1 to end (omit row0, contains series name 'Abbreviation')
+    # http://pandas.pydata.org/pandas-docs/stable/indexing.html#slicing-ranges
+    abbreviations = abbreviation_series[1:]
+    # print('abbreviations')
+    # print(abbreviations)
+
+    # python can iterate over a pandas series
+    # the series contains index and value, loop uses the value
+    return abbreviations
+
+
+def us_states_short():
+    """ 
+    :return: short list of US states as 2 letter abbreviations e.g. ['ID', 'OR', 'WA']
+    to avoid quandl api speed limit when looping requests
+    """""
+    return ['ID', 'OR', 'WA']
+
 
 main_df = pd.DataFrame()
 
-for abbreviation in us_states2:
+for abbreviation in us_states_short():
     query = "FMAC/HPI_" + str(abbreviation)
 
     # df = quandl.get(query, authtoken=quandl_api_key)
