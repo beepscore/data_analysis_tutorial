@@ -26,11 +26,23 @@ df3 = pd.DataFrame({'HPI': [80, 85, 88, 85],
 # merge - in this case merge is not ideal. It ignores index, duplicates some rows.
 # merge is most useful when importing database tables with a common key e.g. username
 d1_d3 = pd.merge(df1, df3, on='HPI')
+print()
+print('merge df1 df3. Note duplicate rows e.g. in unemployment')
 print(d1_d3)
 
 # merge multiple columns. this eliminates some duplication, but not all
 d1_d2 = pd.merge(df1, df2, on=['HPI', 'Int_rate'])
 print()
+print('merge df1 df2')
 print(d1_d2)
 
+# prepare for join. after set_index, df1 and df3 share an index but don't share any columns
+df1.set_index('HPI', inplace=True)
+df3.set_index('HPI', inplace=True)
+
 # join
+# j_d1_d3 = df1.join(df3, lsuffix='_df1', rsuffix='_df3')
+j_d1_d3 = df1.join(df3)
+print()
+print('join')
+print(j_d1_d3)
