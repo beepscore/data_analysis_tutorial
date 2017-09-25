@@ -41,8 +41,6 @@ us_states2 = ['OR', 'WA']
 
 main_df = pd.DataFrame()
 
-# TODO: test after quandl request limits have expired
-
 for abbreviation in us_states2:
     query = "FMAC/HPI_" + str(abbreviation)
 
@@ -64,3 +62,11 @@ for abbreviation in us_states2:
 print('main_df')
 print(main_df)
 
+#                    OR          WA
+# Date
+# 1975-01-31   19.688651   17.478975
+# 1975-02-28   20.174137   17.544439
+# 1975-03-31   20.634533   17.652704
+# ...
+# 2017-06-30  213.900185  216.341550
+# [510 rows x 2 columns]
