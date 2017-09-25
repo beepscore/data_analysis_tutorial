@@ -40,9 +40,29 @@ print(d1_d2)
 df1.set_index('HPI', inplace=True)
 df3.set_index('HPI', inplace=True)
 
-# join
+# join - 'honors' index
 # j_d1_d3 = df1.join(df3, lsuffix='_df1', rsuffix='_df3')
 j_d1_d3 = df1.join(df3)
 print()
 print('join')
 print(j_d1_d3)
+
+
+# similar to above, remove indexes and HPI, add Year
+df1 = pd.DataFrame({'Year': [2001, 2002, 2003, 2004],
+                    'Int_rate': [2, 3, 2, 2],
+                    'US_GDP_Thousands': [50, 55, 65, 55]})
+
+# skip 2002
+df3 = pd.DataFrame({'Year': [2001, 2003, 2004, 2005],
+                    'Unemployment': [7, 8, 9, 6],
+                    'Low_tier_HPI': [50, 52, 50, 53]})
+
+# left joins on left dataframe (here df1)
+# right joins on right dataframe (here df3)
+# inner joins on keys intersection - default
+# outer joins on keys union
+merged = pd.merge(df1, df3, on='Year', how='outer')
+merged.set_index('Year', inplace=True)
+print()
+print(merged)
