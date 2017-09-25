@@ -61,7 +61,8 @@ def grab_initial_state_data():
     text data can be saved to one of several text formats e.g. csv, json
     However can't easily save a python object such as a trained machine learning classifier to a text file.
     Instead, can serialize to a pickle.
-    pandas supports to and from pickle
+    python has standard methods dump and load
+    Alternatively, can use pandas methods to_pickle and read_pickle
     """""
 
     # use local variable to avoid calling function every loop iteration
@@ -112,7 +113,12 @@ def grab_initial_state_data():
 # grab_initial_state_data()
 
 # read data from pickle
+# use python standard method
 # rb read bytes
 pickle_in = open('../data/output/states.pickle', 'rb')
 HPI_data = pickle.load(pickle_in)
 print(HPI_data)
+
+# use pandas pickle methods, slightly shorter syntax
+HPI_data.to_pickle('pickle.pickle')
+HPI_data2 = pd.read_pickle('../data/output/pickle.pickle')
