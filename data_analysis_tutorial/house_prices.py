@@ -50,7 +50,7 @@ def us_states_short():
     """ 
     :return: short list of US states as 2 letter abbreviations e.g. ['ID', 'OR', 'WA']
     to avoid quandl api speed limit when looping requests
-    """""
+    """
     return ['ID', 'MN', 'OR', 'WA']
 
 
@@ -81,7 +81,6 @@ def grab_initial_state_data():
 
         # rename column 'Value' to abbreviation to avoid
         # ValueError: columns overlap but no suffix specified: Index(['Value'], dtype='object')
-
         df.rename(columns={'Value': str(abbreviation)}, inplace=True)
 
         # change state column values to percent change relative to row 0
@@ -121,9 +120,31 @@ def grab_initial_state_data():
     pickle.dump(main_df, pickle_out)
     pickle_out.close()
 
+###
+# Tutorial 8 Percent Change and Correlation Tables
+# https://pythonprogramming.net/percent-change-correlation-data-analysis-python-pandas-tutorial/
+
+
+def hpi_benchmark():
+    """
+    """
+    df = quandl.get("FMAC/HPI_USA", authtoken=quandl_api_key)
+    print(df)
+    us = 'United_States'
+
+    # rename column 'Value' to us to avoid
+    # ValueError: columns overlap but no suffix specified: Index(['Value'], dtype='object')
+    df.rename(columns={'Value': us}, inplace=True)
+
+    df[us] = ((df[us] - df[us][0]) / df[us][0]) * 100
+    return df
+
 
 # comment out after writing states.pickle
 # grab_initial_state_data()
+
+fig = plt.figure()
+ax1 = plt.subplot2grid((1, 1), (0, 0))
 
 # read data from pickle
 # use python standard method
@@ -136,11 +157,13 @@ def grab_initial_state_data():
 # HPI_data.to_pickle('pickle.pickle')
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
-###
-# Tutorial 8 Percent Change and Correlation Tables
-# https://pythonprogramming.net/percent-change-correlation-data-analysis-python-pandas-tutorial/
+benchmark = hpi_benchmark()
 
-HPI_data.plot()
+HPI_data.plot(ax=ax1)
+# k is black
+benchmark.plot(ax=ax1, color='k', linewidth=6)
+
 plt.legend().remove
 plt.show()
+
 
