@@ -157,13 +157,37 @@ ax1 = plt.subplot2grid((1, 1), (0, 0))
 # HPI_data.to_pickle('pickle.pickle')
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
-benchmark = hpi_benchmark()
+# benchmark = hpi_benchmark()
+#
+# HPI_data.plot(ax=ax1)
+# # k is black
+# benchmark.plot(ax=ax1, color='k', linewidth=6)
+#
+# plt.legend().remove
+# plt.show()
 
-HPI_data.plot(ax=ax1)
-# k is black
-benchmark.plot(ax=ax1, color='k', linewidth=6)
+HPI_State_Correlation = HPI_data.corr()
+print(HPI_State_Correlation)
+#           ID        MN        OR        WA
+# ID  1.000000  0.969281  0.994960  0.994941
+# MN  0.969281  1.000000  0.970385  0.973255
+# OR  0.994960  0.970385  1.000000  0.996621
+# WA  0.994941  0.973255  0.996621  1.000000
+# ==> states are highly correlated with each other
 
-plt.legend().remove
-plt.show()
-
+# statistics
+# count == number of states
+# min == minimum correlation with any other state
+# max == maximum correlation with any other state, == 1 for same state
+# 25% 25th percentile, 75% are above this value
+print(HPI_State_Correlation.describe())
+#              ID        MN        OR        WA
+# count  4.000000  4.000000  4.000000  4.000000
+# mean   0.989796  0.978231  0.990492  0.991204
+# std    0.013882  0.014609  0.013567  0.012150
+# min    0.969281  0.969281  0.970385  0.973255
+# 25%    0.988526  0.970109  0.988817  0.989520
+# 50%    0.994951  0.971820  0.995791  0.995781
+# 75%    0.996220  0.979942  0.997466  0.997466
+# max    1.000000  1.000000  1.000000  1.000000
 
