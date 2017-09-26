@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 
-import pandas as pd
-
-# tutorial 7 Pickline
+# Tutorial 7 Pickling
 # https://pythonprogramming.net/pickle-data-analysis-python-pandas-tutorial/
 
 import pandas as pd
+import matplotlib.pyplot as plt
 from matplotlib import style
 import quandl
 import pickle
 
-style.use('ggplot')
+style.use('fivethirtyeight')
 
 # For security keep quandl api key out of version control.
 # read api key from a file that is ignored.
@@ -115,10 +114,19 @@ def grab_initial_state_data():
 # read data from pickle
 # use python standard method
 # rb read bytes
-pickle_in = open('../data/output/states.pickle', 'rb')
-HPI_data = pickle.load(pickle_in)
-print(HPI_data)
+# pickle_in = open('../data/output/states.pickle', 'rb')
+# HPI_data = pickle.load(pickle_in)
+# print(HPI_data)
 
 # use pandas pickle methods, slightly shorter syntax
-HPI_data.to_pickle('pickle.pickle')
-HPI_data2 = pd.read_pickle('../data/output/pickle.pickle')
+# HPI_data.to_pickle('pickle.pickle')
+HPI_data = pd.read_pickle('../data/output/states.pickle')
+
+###
+# Tutorial 8 Percent Change and Correlation Tables
+# https://pythonprogramming.net/percent-change-correlation-data-analysis-python-pandas-tutorial/
+
+HPI_data.plot()
+plt.legend().remove
+plt.show()
+
