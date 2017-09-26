@@ -84,6 +84,10 @@ def grab_initial_state_data():
 
         df.rename(columns={'Value': str(abbreviation)}, inplace=True)
 
+        # change state column values to percent change relative to row 0
+        # don't use pct_change(), it shows change from one point to next
+        df[abbreviation] = ((df[abbreviation] - df[abbreviation][0]) / df[abbreviation][0]) * 100
+
         if main_df.empty:
             main_df = df
 
@@ -93,6 +97,7 @@ def grab_initial_state_data():
     print('main_df')
     print(main_df)
 
+    # original state column values
     #                    OR          WA
     # Date
     # 1975-01-31   19.688651   17.478975
@@ -102,14 +107,23 @@ def grab_initial_state_data():
     # 2017-06-30  213.900185  216.341550
     # [510 rows x 2 columns]
 
+    # state columns show percent change
+    #                     ID          MN          OR           WA
+    # Date
+    # 1975-01-31    0.000000    0.000000    0.000000     0.000000
+    # 1975-02-28   -0.156229    1.000795    2.465818     0.374531
+    # 1975-03-31   -0.324616    1.863569    4.804198     0.993931
+    # ...
+    # 2017-06-30  470.938021  497.672327  986.413619  1137.724456
+
     # wb write bytes
-    pickle_out = open('../data/output/states.pickle', 'wb')
+    pickle_out = open('../data/output/states_change.pickle', 'wb')
     pickle.dump(main_df, pickle_out)
     pickle_out.close()
 
 
 # comment out after writing states.pickle
-# grab_initial_state_data()
+grab_initial_state_data()
 
 # read data from pickle
 # use python standard method
@@ -120,7 +134,7 @@ def grab_initial_state_data():
 
 # use pandas pickle methods, slightly shorter syntax
 # HPI_data.to_pickle('pickle.pickle')
-HPI_data = pd.read_pickle('../data/output/states.pickle')
+HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 ###
 # Tutorial 8 Percent Change and Correlation Tables
