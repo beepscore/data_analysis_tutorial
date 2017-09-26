@@ -123,7 +123,7 @@ def grab_initial_state_data():
 
 
 # comment out after writing states.pickle
-grab_initial_state_data()
+# grab_initial_state_data()
 
 # read data from pickle
 # use python standard method
