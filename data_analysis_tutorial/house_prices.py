@@ -159,6 +159,8 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 # HPI_data.plot(ax=ax1)
 HPI_data['WA'].plot(ax=ax1, label='Monthly WA HPI')
+
+# Tutorial 9 Resampling
 # pandas time series frequency offset alias A annual
 WA1yr = HPI_data['WA'].resample('A').mean()
 print(WA1yr.head())
