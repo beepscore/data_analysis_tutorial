@@ -158,7 +158,7 @@ ax1 = plt.subplot2grid((1, 1), (0, 0))
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 # HPI_data.plot(ax=ax1)
-HPI_data['WA'].plot(ax=ax1)
+HPI_data['WA'].plot(ax=ax1, label='Monthly WA HPI')
 # pandas time series frequency offset alias A annual
 WA1yr = HPI_data['WA'].resample('A').mean()
 print(WA1yr.head())
@@ -169,13 +169,14 @@ print(WA1yr.head())
 # 1978-12-31    69.099914
 # 1979-12-31    96.661495
 
-WA1yr.plot(ax=ax1)
+WA1yr.plot(ax=ax1, label='Yearly WA HPI')
 
 # benchmark = hpi_benchmark()
 # k is black
 # benchmark.plot(ax=ax1, color='k', linewidth=6)
 
-plt.legend().remove
+# plt.legend().remove
+plt.legend(loc=4)
 plt.show()
 
 # HPI_State_Correlation = HPI_data.corr()
