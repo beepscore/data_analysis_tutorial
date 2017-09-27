@@ -157,17 +157,29 @@ ax1 = plt.subplot2grid((1, 1), (0, 0))
 # HPI_data.to_pickle('pickle.pickle')
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
-# benchmark = hpi_benchmark()
-#
 # HPI_data.plot(ax=ax1)
-# # k is black
-# benchmark.plot(ax=ax1, color='k', linewidth=6)
-#
-# plt.legend().remove
-# plt.show()
+HPI_data['WA'].plot(ax=ax1)
+# pandas time series frequency offset alias A annual
+WA1yr = HPI_data['WA'].resample('A').mean()
+print(WA1yr.head())
+# Date
+# 1975-12-31     3.239930
+# 1976-12-31    15.619957
+# 1977-12-31    37.161107
+# 1978-12-31    69.099914
+# 1979-12-31    96.661495
 
-HPI_State_Correlation = HPI_data.corr()
-print(HPI_State_Correlation)
+WA1yr.plot(ax=ax1)
+
+# benchmark = hpi_benchmark()
+# k is black
+# benchmark.plot(ax=ax1, color='k', linewidth=6)
+
+plt.legend().remove
+plt.show()
+
+# HPI_State_Correlation = HPI_data.corr()
+# print(HPI_State_Correlation)
 #           ID        MN        OR        WA
 # ID  1.000000  0.969281  0.994960  0.994941
 # MN  0.969281  1.000000  0.970385  0.973255
@@ -180,7 +192,7 @@ print(HPI_State_Correlation)
 # min == minimum correlation with any other state
 # max == maximum correlation with any other state, == 1 for same state
 # 25% 25th percentile, 75% are above this value
-print(HPI_State_Correlation.describe())
+# print(HPI_State_Correlation.describe())
 #              ID        MN        OR        WA
 # count  4.000000  4.000000  4.000000  4.000000
 # mean   0.989796  0.978231  0.990492  0.991204
