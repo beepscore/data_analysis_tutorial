@@ -143,9 +143,6 @@ def hpi_benchmark():
 # comment out after writing states.pickle
 # grab_initial_state_data()
 
-fig = plt.figure()
-ax1 = plt.subplot2grid((1, 1), (0, 0))
-
 # read data from pickle
 # use python standard method
 # rb read bytes
@@ -157,6 +154,8 @@ ax1 = plt.subplot2grid((1, 1), (0, 0))
 # HPI_data.to_pickle('pickle.pickle')
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
+# fig = plt.figure()
+# ax1 = plt.subplot2grid((1, 1), (0, 0))
 # HPI_data.plot(ax=ax1)
 # HPI_data['WA'].plot(ax=ax1, label='Monthly WA HPI')
 
@@ -172,6 +171,8 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 # 1978-12-31    69.099914
 # 1979-12-31    96.661495
 
+# fig = plt.figure()
+# ax1 = plt.subplot2grid((1, 1), (0, 0))
 # WA1yr.plot(ax=ax1, label='Yearly WA HPI')
 
 # benchmark = hpi_benchmark()
@@ -213,6 +214,8 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 # HPI_data['WA1yr'] = HPI_data['WA'].resample('A').mean()
 # print(HPI_data[['WA', 'WA1yr']].head())
 # print(HPI_data[['WA', 'WA1yr']])
+# fig = plt.figure()
+# ax1 = plt.subplot2grid((1, 1), (0, 0))
 # HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
 #                      WA       WA1yr
 # Date
@@ -243,6 +246,7 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 # delete rows that contain NaN
 # http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html
 # HPI_data.dropna(inplace=True)
+# ax1 = plt.subplot2grid((1, 1), (0, 0))
 # HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
 # plt.show()
 
@@ -263,9 +267,20 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 # FutureWarning: pd.rolling_mean is deprecated for Series and will be removed in a future version, replace with
 # Series.rolling(window=12,center=False).mean()
 HPI_data['WA12MA'] = HPI_data['WA'].rolling(window=12, center=False).mean()
+HPI_data['WA12STD'] = HPI_data['WA'].rolling(window=12, center=False).std()
 
-print(HPI_data[['WA', 'WA12MA']].head())
+fig = plt.figure()
+
+# print(HPI_data[['WA', 'WA12MA']].head())
+# HPI_data[['WA', 'WA12MA']].plot(ax=ax1)
+print(HPI_data[['WA', 'WA12STD']].head())
+
+# grid is 2 tall, 1 wide
+ax1 = plt.subplot2grid((2, 1), (0, 0))
+# sharex, keeps 2 graphs x scales in sync
+ax2 = plt.subplot2grid((2, 1), (1, 0), sharex=ax1)
 HPI_data[['WA', 'WA12MA']].plot(ax=ax1)
+HPI_data[['WA12STD']].plot(ax=ax2)
 
 plt.legend(loc=4)
 plt.show()
