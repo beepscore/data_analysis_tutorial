@@ -158,7 +158,7 @@ ax1 = plt.subplot2grid((1, 1), (0, 0))
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 # HPI_data.plot(ax=ax1)
-HPI_data['WA'].plot(ax=ax1, label='Monthly WA HPI')
+# HPI_data['WA'].plot(ax=ax1, label='Monthly WA HPI')
 
 # Tutorial 9 Resampling
 # pandas time series frequency offset alias A annual
@@ -171,15 +171,15 @@ print(WA1yr.head())
 # 1978-12-31    69.099914
 # 1979-12-31    96.661495
 
-WA1yr.plot(ax=ax1, label='Yearly WA HPI')
+# WA1yr.plot(ax=ax1, label='Yearly WA HPI')
 
 # benchmark = hpi_benchmark()
 # k is black
 # benchmark.plot(ax=ax1, color='k', linewidth=6)
 
 # plt.legend().remove
-plt.legend(loc=4)
-plt.show()
+# plt.legend(loc=4)
+# plt.show()
 
 # HPI_State_Correlation = HPI_data.corr()
 # print(HPI_State_Correlation)
@@ -206,3 +206,28 @@ plt.show()
 # 75%    0.996220  0.979942  0.997466  0.997466
 # max    1.000000  1.000000  1.000000  1.000000
 
+# Tutorial 10 Handling Missing Data
+# https://pythonprogramming.net/nan-na-missing-data-analysis-python-pandas-tutorial/
+
+HPI_data['WA1yr'] = HPI_data['WA'].resample('A').mean()
+# print(HPI_data[['WA', 'WA1yr']].head())
+print(HPI_data[['WA', 'WA1yr']])
+HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
+#                      WA       WA1yr
+# Date
+# 1975-01-31     0.000000         NaN
+# 1975-02-28     0.374531         NaN
+# 1975-03-31     0.993931         NaN
+# 1975-04-30     1.756513         NaN
+# 1975-05-31     2.466806         NaN
+# 1975-06-30     3.221538         NaN
+# 1975-07-31     4.055311         NaN
+# 1975-08-31     4.568414         NaN
+# 1975-09-30     4.605898         NaN
+# 1975-10-31     4.697562         NaN
+# 1975-11-30     5.451054         NaN
+# 1975-12-31     6.687600    3.239930
+
+plt.legend(loc=4)
+# missing values NaN prevent WA1yr from plotting
+plt.show()
