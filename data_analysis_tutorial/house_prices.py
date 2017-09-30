@@ -212,7 +212,7 @@ print(WA1yr.head())
 HPI_data['WA1yr'] = HPI_data['WA'].resample('A').mean()
 # print(HPI_data[['WA', 'WA1yr']].head())
 print(HPI_data[['WA', 'WA1yr']])
-HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
+# HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
 #                      WA       WA1yr
 # Date
 # 1975-01-31     0.000000         NaN
@@ -230,4 +230,29 @@ HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
 
 plt.legend(loc=4)
 # missing values NaN prevent WA1yr from plotting
+# plt.show()
+
+# strategies to handle missing data
+# ignore, delete, replace
+
+# get rows with Nan
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.isnull.html
+# print(HPI_data.isnull().values.sum())
+
+# delete rows that contain NaN
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html
+# HPI_data.dropna(inplace=True)
+# HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
+# plt.show()
+
+# replace NaN by filling older data forward
+HPI_data.fillna(method='ffill', inplace=True)
+
+# replace NaN by filling with a number. Machine learning can recognize these as outliers.
+# HPI_data.fillna(value=-99999, inplace=True)
+
+HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
 plt.show()
+
+# Tutorial 11 Rolling statistics
+# https://pythonprogramming.net/rolling-statistics-data-analysis-python-pandas-tutorial/
