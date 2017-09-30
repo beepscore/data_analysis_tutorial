@@ -261,26 +261,54 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 # Tutorial 11 Rolling statistics
 # https://pythonprogramming.net/rolling-statistics-data-analysis-python-pandas-tutorial/
-# rolling mean aka moving average
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rolling.html
+# http://pandas.pydata.org/pandas-docs/stable/api.html#api-dataframe-stats
 
+# rolling mean aka moving average
 # HPI_data['WA12MA'] = pd.rolling_mean(HPI_data['WA'], 12)
 # FutureWarning: pd.rolling_mean is deprecated for Series and will be removed in a future version, replace with
 # Series.rolling(window=12,center=False).mean()
 HPI_data['WA12MA'] = HPI_data['WA'].rolling(window=12, center=False).mean()
-HPI_data['WA12STD'] = HPI_data['WA'].rolling(window=12, center=False).std()
 
-fig = plt.figure()
-
-# print(HPI_data[['WA', 'WA12MA']].head())
+# # standard deviation
+# HPI_data['WA12STD'] = HPI_data['WA'].rolling(window=12, center=False).std()
+#
+# fig = plt.figure()
+#
+# # print(HPI_data[['WA', 'WA12MA']].head())
+# # HPI_data[['WA', 'WA12MA']].plot(ax=ax1)
+# print(HPI_data[['WA', 'WA12STD']].head())
+#
+# # grid is 2 tall, 1 wide
+# ax1 = plt.subplot2grid((2, 1), (0, 0))
+# # sharex, keeps 2 graphs x scales in sync
+# ax2 = plt.subplot2grid((2, 1), (1, 0), sharex=ax1)
 # HPI_data[['WA', 'WA12MA']].plot(ax=ax1)
-print(HPI_data[['WA', 'WA12STD']].head())
+# HPI_data[['WA12STD']].plot(ax=ax2)
+#
+# plt.legend(loc=4)
+# plt.show()
+
+# rolling correlation
+# http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.corr.html
+
+# this statement returns one number, not a series?
+# WA_ID_12corr = HPI_data['WA'].corr(HPI_data['WA'], 'pearson', 12)
+
+# tutorial shows
+# WA_ID_12corr = pd.rolling_corr(HPI_data['WA'], HPI_data['ID'], 12)
+
+# FutureWarning: pd.rolling_corr is deprecated for Series and will be removed in a future version, replace with
+# Series.rolling(window=12).corr(other=<Series>)
+WA_ID_12corr = HPI_data['WA'].rolling(window=12).corr(HPI_data['ID'])
 
 # grid is 2 tall, 1 wide
 ax1 = plt.subplot2grid((2, 1), (0, 0))
 # sharex, keeps 2 graphs x scales in sync
 ax2 = plt.subplot2grid((2, 1), (1, 0), sharex=ax1)
-HPI_data[['WA', 'WA12MA']].plot(ax=ax1)
-HPI_data[['WA12STD']].plot(ax=ax2)
+HPI_data[['WA']].plot(ax=ax1, label='WA_HPI')
+HPI_data[['ID']].plot(ax=ax1, label='ID_HPI')
+WA_ID_12corr.plot(ax=ax2, label='WA_ID_12corr')
 
 plt.legend(loc=4)
 plt.show()
