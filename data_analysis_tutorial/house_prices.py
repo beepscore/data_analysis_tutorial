@@ -161,9 +161,10 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 # HPI_data['WA'].plot(ax=ax1, label='Monthly WA HPI')
 
 # Tutorial 9 Resampling
+
 # pandas time series frequency offset alias A annual
-WA1yr = HPI_data['WA'].resample('A').mean()
-print(WA1yr.head())
+# WA1yr = HPI_data['WA'].resample('A').mean()
+# print(WA1yr.head())
 # Date
 # 1975-12-31     3.239930
 # 1976-12-31    15.619957
@@ -209,9 +210,9 @@ print(WA1yr.head())
 # Tutorial 10 Handling Missing Data
 # https://pythonprogramming.net/nan-na-missing-data-analysis-python-pandas-tutorial/
 
-HPI_data['WA1yr'] = HPI_data['WA'].resample('A').mean()
+# HPI_data['WA1yr'] = HPI_data['WA'].resample('A').mean()
 # print(HPI_data[['WA', 'WA1yr']].head())
-print(HPI_data[['WA', 'WA1yr']])
+# print(HPI_data[['WA', 'WA1yr']])
 # HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
 #                      WA       WA1yr
 # Date
@@ -228,7 +229,7 @@ print(HPI_data[['WA', 'WA1yr']])
 # 1975-11-30     5.451054         NaN
 # 1975-12-31     6.687600    3.239930
 
-plt.legend(loc=4)
+# plt.legend(loc=4)
 # missing values NaN prevent WA1yr from plotting
 # plt.show()
 
@@ -246,13 +247,25 @@ plt.legend(loc=4)
 # plt.show()
 
 # replace NaN by filling older data forward
-HPI_data.fillna(method='ffill', inplace=True)
+# HPI_data.fillna(method='ffill', inplace=True)
 
 # replace NaN by filling with a number. Machine learning can recognize these as outliers.
 # HPI_data.fillna(value=-99999, inplace=True)
 
-HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
-plt.show()
+# HPI_data[['WA', 'WA1yr']].plot(ax=ax1)
+# plt.show()
 
 # Tutorial 11 Rolling statistics
 # https://pythonprogramming.net/rolling-statistics-data-analysis-python-pandas-tutorial/
+# rolling mean aka moving average
+
+# HPI_data['WA12MA'] = pd.rolling_mean(HPI_data['WA'], 12)
+# FutureWarning: pd.rolling_mean is deprecated for Series and will be removed in a future version, replace with
+# Series.rolling(window=12,center=False).mean()
+HPI_data['WA12MA'] = HPI_data['WA'].rolling(window=12, center=False).mean()
+
+print(HPI_data[['WA', 'WA12MA']].head())
+HPI_data[['WA', 'WA12MA']].plot(ax=ax1)
+
+plt.legend(loc=4)
+plt.show()
