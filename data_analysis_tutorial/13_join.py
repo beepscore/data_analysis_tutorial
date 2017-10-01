@@ -217,7 +217,8 @@ print(HPI.corr())
 
 state_HPI_M30 = HPI_data.join(m30)
 print('state_HPI_M30 corr')
-print(state_HPI_M30.corr())
+state_HPI_M30_corr = state_HPI_M30.corr()
+print(state_HPI_M30_corr)
 # state_HPI_M30 corr
 #            ID        MN        OR        WA       M30
 # ID   1.000000  0.969281  0.994960  0.994941 -0.767792
@@ -228,7 +229,8 @@ print(state_HPI_M30.corr())
 
 print()
 print('select row index and last column')
-print(state_HPI_M30.corr()['M30'])
+state_HPI_M30_corr_M30 = state_HPI_M30_corr['M30']
+print(state_HPI_M30_corr_M30)
 # select row index and last column
 # ID    -0.767792
 # MN    -0.765597
@@ -238,7 +240,7 @@ print(state_HPI_M30.corr()['M30'])
 # Name: M30, dtype: float64
 
 print()
-print(state_HPI_M30.corr()['M30'].describe())
+print(state_HPI_M30_corr_M30.describe())
 # count    5.000000
 # mean    -0.423154
 # std      0.795662
@@ -247,4 +249,19 @@ print(state_HPI_M30.corr()['M30'].describe())
 # 50%     -0.767792
 # 75%     -0.765597
 # max      1.000000
+# Name: M30, dtype: float64
+
+print()
+print('drop m30 row')
+state_HPI_M30_corr_M30_drop_M30 = state_HPI_M30_corr_M30.drop(['M30'])
+print(state_HPI_M30_corr_M30_drop_M30.describe())
+# drop m30 row
+# count    4.000000
+# mean    -0.778943
+# std      0.014173
+# min     -0.791440
+# 25%     -0.791067
+# 50%     -0.779368
+# 75%     -0.767243
+# max     -0.765597
 # Name: M30, dtype: float64
