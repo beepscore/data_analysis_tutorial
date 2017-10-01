@@ -18,6 +18,7 @@ input_file_path = input_directory + input_file_name
 # rstrip to remove trailing \n
 quandl_api_key = open(input_file_path, 'r').read().rstrip()
 
+
 def us_states50():
     """
     :return: pandas series of 50 US states as 2 letter abbreviations e.g. ['AK', 'AL'...]
