@@ -127,7 +127,6 @@ def hpi_benchmark():
     """
     """
     df = quandl.get("FMAC/HPI_USA", authtoken=quandl_api_key)
-    print(df)
     us = 'United_States'
 
     # rename column 'Value' to us to avoid
@@ -166,9 +165,12 @@ def mortgage_30y():
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 HPI_Bench = hpi_benchmark()
+print('HPI_Bench.head()')
 print(HPI_Bench.head())
+print()
 m30 = mortgage_30y()
 m30.columns = ['M30']
+print('m30')
 print(m30)
 # HPI = HPI_Bench.join(m30)
 # print(HPI.head())
