@@ -20,5 +20,16 @@ df = pd.DataFrame(bridge_height)
 df['STD'] = df['meters'].rolling(window=2, center=False).std()
 print(df)
 
-df.plot()
+# std for entire series
+df_meters_describe = df.describe()['meters']
+print()
+print(df_meters_describe)
+df_meters_std = df_meters_describe['std']
+# df.plot()
+# plt.show()
+
+# filter with a comparison operator. Don't pass outliers
+df = df[(df['STD'] < 1.5 * df_meters_std)]
+
+df['meters'].plot()
 plt.show()
