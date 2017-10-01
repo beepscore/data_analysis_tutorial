@@ -6,7 +6,6 @@
 import quandl
 import pandas as pd
 import pickle
-import matplotlib.pyplot as plt
 from matplotlib import style
 
 style.use('fivethirtyeight')
