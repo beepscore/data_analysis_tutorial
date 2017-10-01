@@ -156,16 +156,19 @@ def mortgage_30y():
 # read data from pickle
 # use python standard method
 # rb read bytes
-# pickle_in = open('../data/output/states.pickle', 'rb')
-# HPI_data = pickle.load(pickle_in)
+pickle_in = open('../data/output/states.pickle', 'rb')
+HPI_data = pickle.load(pickle_in)
+# print()
+# print('HPI_data')
 # print(HPI_data)
 
 # use pandas pickle methods, slightly shorter syntax
 # HPI_data.to_pickle('pickle.pickle')
-HPI_data = pd.read_pickle('../data/output/states_change.pickle')
+# HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
 HPI_Bench = hpi_benchmark()
-print('HPI_Bench.head()')
+print()
+print('HPI_Bench head')
 print(HPI_Bench.head())
 #             United_States
 # Date
@@ -191,5 +194,57 @@ print(m30)
 # ...
 # 2016-09-30 -63.308590
 
-# HPI = HPI_Bench.join(m30)
-# print(HPI.head())
+HPI = HPI_Bench.join(m30)
+print()
+print('join')
+print(HPI.head())
+#             United_States       M30
+# Date
+# 1975-01-31       0.000000  0.000000
+# 1975-02-28       0.657772 -3.393425
+# 1975-03-31       1.722313 -5.620361
+# 1975-04-30       3.106105 -6.468717
+# 1975-05-31       3.974628 -5.514316
+
+print()
+print('corr')
+print(HPI.corr())
+# strong negative correlation- as mortgage interest rates increase hpi housing price index decreases
+# corr
+#                United_States       M30
+# United_States       1.000000 -0.778396
+# M30                -0.778396  1.000000
+
+state_HPI_M30 = HPI_data.join(m30)
+print('state_HPI_M30 corr')
+print(state_HPI_M30.corr())
+# state_HPI_M30 corr
+#            ID        MN        OR        WA       M30
+# ID   1.000000  0.969281  0.994960  0.994941 -0.767792
+# MN   0.969281  1.000000  0.970385  0.973255 -0.765597
+# OR   0.994960  0.970385  1.000000  0.996621 -0.790943
+# WA   0.994941  0.973255  0.996621  1.000000 -0.791440
+# M30 -0.767792 -0.765597 -0.790943 -0.791440  1.000000
+
+print()
+print('select row index and last column')
+print(state_HPI_M30.corr()['M30'])
+# select row index and last column
+# ID    -0.767792
+# MN    -0.765597
+# OR    -0.790943
+# WA    -0.791440
+# M30    1.000000
+# Name: M30, dtype: float64
+
+print()
+print(state_HPI_M30.corr()['M30'].describe())
+# count    5.000000
+# mean    -0.423154
+# std      0.795662
+# min     -0.791440
+# 25%     -0.790943
+# 50%     -0.767792
+# 75%     -0.765597
+# max      1.000000
+# Name: M30, dtype: float64
