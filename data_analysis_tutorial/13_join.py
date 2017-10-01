@@ -239,6 +239,7 @@ print(state_HPI_M30_corr_M30)
 # M30    1.000000
 # Name: M30, dtype: float64
 
+# tutorial showed this, but author and commenters noted probably should drop m30 from descriptive stats
 print()
 print(state_HPI_M30_corr_M30.describe())
 # count    5.000000
