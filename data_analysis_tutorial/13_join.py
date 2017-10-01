@@ -9,8 +9,13 @@ from matplotlib import style
 
 style.use('fivethirtyeight')
 
-# Not necessary, I just do this so I do not show my API key.
-api_key = open('quandlapikey.txt', 'r').read()
+# For security keep quandl api key out of version control.
+# read api key from a file that is ignored.
+input_directory = "../data/input/"
+input_file_name = 'quandl_api_key.txt'
+input_file_path = input_directory + input_file_name
+# rstrip to remove trailing \n
+quandl_api_key = open(input_file_path, 'r').read().rstrip()
 
 
 def state_list():
@@ -25,7 +30,7 @@ def grab_initial_state_data():
 
     for abbv in states:
         query = "FMAC/HPI_" + str(abbv)
-        df = quandl.get(query, authtoken=api_key)
+        df = quandl.get(query, authtoken=quandl_api_key)
         print(query)
         df[abbv] = (df[abbv] - df[abbv][0]) / df[abbv][0] * 100.0
         print(df.head())
@@ -40,13 +45,13 @@ def grab_initial_state_data():
 
 
 def HPI_Benchmark():
-    df = quandl.get("FMAC/HPI_USA", authtoken=api_key)
+    df = quandl.get("FMAC/HPI_USA", authtoken=quandl_api_key)
     df["United States"] = (df["United States"] - df["United States"][0]) / df["United States"][0] * 100.0
     return df
 
 
 def mortgage_30y():
-    df = quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=api_key)
+    df = quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=quandl_api_key)
     df["Value"] = (df["Value"] - df["Value"][0]) / df["Value"][0] * 100.0
     df = df.resample('1D')
     df = df.resample('M')
