@@ -167,10 +167,29 @@ HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 HPI_Bench = hpi_benchmark()
 print('HPI_Bench.head()')
 print(HPI_Bench.head())
+#             United_States
+# Date
+# 1975-01-31       0.000000
+# 1975-02-28       0.657772
+# 1975-03-31       1.722313
+# 1975-04-30       3.106105
+# 1975-05-31       3.974628
+
 print()
 m30 = mortgage_30y()
 m30.columns = ['M30']
 print('m30')
 print(m30)
+# m30
+#                   M30
+# Date
+# 1975-01-31   0.000000
+# 1975-02-28  -3.393425
+# 1975-03-31  -5.620361
+# 1975-04-30  -6.468717
+# 1975-05-31  -5.514316
+# ...
+# 2016-09-30 -63.308590
+
 # HPI = HPI_Bench.join(m30)
 # print(HPI.head())
