@@ -1,7 +1,7 @@
 
 # https://pythonprogramming.net/joining-mortgage-rate-data-analysis-python-pandas-tutorial/
 
-import Quandl
+import quandl
 import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
@@ -25,7 +25,7 @@ def grab_initial_state_data():
 
     for abbv in states:
         query = "FMAC/HPI_" + str(abbv)
-        df = Quandl.get(query, authtoken=api_key)
+        df = quandl.get(query, authtoken=api_key)
         print(query)
         df[abbv] = (df[abbv] - df[abbv][0]) / df[abbv][0] * 100.0
         print(df.head())
@@ -40,13 +40,13 @@ def grab_initial_state_data():
 
 
 def HPI_Benchmark():
-    df = Quandl.get("FMAC/HPI_USA", authtoken=api_key)
+    df = quandl.get("FMAC/HPI_USA", authtoken=api_key)
     df["United States"] = (df["United States"] - df["United States"][0]) / df["United States"][0] * 100.0
     return df
 
 
 def mortgage_30y():
-    df = Quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=api_key)
+    df = quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=api_key)
     df["Value"] = (df["Value"] - df["Value"][0]) / df["Value"][0] * 100.0
     df = df.resample('1D')
     df = df.resample('M')
