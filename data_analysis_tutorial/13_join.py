@@ -122,6 +122,7 @@ def grab_initial_state_data():
 # Tutorial 8 Percent Change and Correlation Tables
 # https://pythonprogramming.net/percent-change-correlation-data-analysis-python-pandas-tutorial/
 
+
 def hpi_benchmark():
     """
     """
@@ -140,8 +141,13 @@ def hpi_benchmark():
 def mortgage_30y():
     df = quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=quandl_api_key)
     df["Value"] = (df["Value"] - df["Value"][0]) / df["Value"][0] * 100.0
-    df = df.resample('1D')
-    df = df.resample('M')
+
+    # fix warning
+    # .resample() is now a deferred operation You called resample(...) on this deferred object
+    # which materialized it into a dataframe by implicitly taking the mean.\
+    # Use.resample(...).mean() instead
+    df = df.resample('1D').mean()
+    df = df.resample('M').mean()
     return df
 
 
@@ -159,3 +165,10 @@ def mortgage_30y():
 # HPI_data.to_pickle('pickle.pickle')
 HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
+HPI_Bench = hpi_benchmark()
+print(HPI_Bench.head())
+m30 = mortgage_30y()
+m30.columns = ['M30']
+print(m30)
+# HPI = HPI_Bench.join(m30)
+# print(HPI.head())
