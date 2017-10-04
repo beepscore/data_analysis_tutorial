@@ -138,8 +138,7 @@ def hpi_benchmark():
 
 
 def mortgage_30y():
-    #df = quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=quandl_api_key)
-    df = quandl.get("FMAC/MORTG", trim_start="1990-01-01", authtoken=quandl_api_key)
+    df = quandl.get("FMAC/MORTG", trim_start="1975-01-01", authtoken=quandl_api_key)
     df["Value"] = (df["Value"] - df["Value"][0]) / df["Value"][0] * 100.0
     df.rename(columns={'Value': "m30"}, inplace=True)
 
@@ -177,10 +176,9 @@ def sp500_data_from_file():
     # set the index
     df.set_index('Date', inplace=True)
 
-    # filter with a comparison operator. don't pass outliers
-    # df = df[(df['Date'] >= pd.to_datetime('1990-01-01'))]
+    # filter with a comparison operator.
     # https://stackoverflow.com/questions/20233071/filter-pandas-dataframe-by-time-index#20233649
-    df = df.loc[df.index >= pd.to_datetime('1990-01-01')]
+    df = df.loc[df.index >= pd.to_datetime('1975-01-01')]
 
     df["Adj Close"] = (df["Adj Close"]-df["Adj Close"][0]) / df["Adj Close"][0] * 100.0
     df = df.resample('M').mean()
@@ -197,7 +195,7 @@ def us_gdp_data():
     """
     # brazil monthly gdb??
     # https://www.quandl.com/data/BCB/4385-GDP-monthly-in-US-million
-    df = quandl.get("BCB/4385", trim_start="1990-01-01", authtoken=quandl_api_key)
+    df = quandl.get("BCB/4385", trim_start="1975-01-01", authtoken=quandl_api_key)
 
     df.rename(columns={'Value': 'gdp'}, inplace=True)
     df["gdp"] = (df["gdp"] - df["gdp"][0]) / df["gdp"][0] * 100.0
@@ -209,8 +207,7 @@ def us_unemployment_data():
     # quandl code used in tutorial doesn't work
     # df = quandl.get("ECPI/JOB_G", trim_start="1975-01-01", authtoken=quandl_api_key)
     # https://www.quandl.com/data/FRBC/UNEMP_ST_US-Unemployment-United-States
-    # df = quandl.get("FRBC/UNEMP_ST_US", trim_start="1975-01-01", authtoken=quandl_api_key)
-    df = quandl.get("FRBC/UNEMP_ST_US", trim_start="1990-01-01", authtoken=quandl_api_key)
+    df = quandl.get("FRBC/UNEMP_ST_US", trim_start="1975-01-01", authtoken=quandl_api_key)
 
     df.rename(columns={'Value': 'unemp_rate'}, inplace=True)
     df["unemp_rate"] = (df["unemp_rate"] - df["unemp_rate"][0]) / df["unemp_rate"][0] * 100.0
