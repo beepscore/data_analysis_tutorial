@@ -216,47 +216,46 @@ def us_unemployment_data():
     return df
 
 
-sp500 = sp500_data_from_file()
-print()
-print('sp500')
+# sp500 = sp500_data_from_file()
+# print()
+# print('sp500')
 # print(sp500.head())
-print(sp500)
+# print(sp500)
 # sp500
 # Date
-# 1990-01-31      0.000000
-# 1990-02-28      0.853904
-# 1990-03-31      3.300114
-# ...
-# 2017-10-31    668.542670
-# Freq: M, Name: sp500, Length: 334, dtype: float64
+# 1975-01-31       0.000000
+# 1975-02-28       5.988559
+# 1975-03-31       8.287864
+# # ...
+# 2017-10-31    3185.424810
+# Freq: M, Name: sp500, Length: 514, dtype: float64
 
-us_unemployment = us_unemployment_data()
-print()
-print('unemp_rate')
+# us_unemployment = us_unemployment_data()
+# print()
+# print('unemp_rate')
 # print(us_unemployment.head())
-print(us_unemployment)
-# us_unemployment
+# print(us_unemployment)
+# unemp_rate
 #             unemp_rate
 # Date
-# 1990-01-31    0.000000
-# 1990-02-28   -1.851852
-# 1990-03-31   -3.703704
-# 1990-04-30    0.000000
+# 1978-01-31      0.0000
+# 1978-02-28     -1.5625
+# 1978-03-31     -1.5625
 # ...
-# 2014-04-30   16.666667
+# 2014-04-30     -1.5625
 #
-# [292 rows x 1 columns]
+# [436 rows x 1 columns]
 
-us_gdp = us_gdp_data()
-print()
-print('us_gdp')
-print(us_gdp)
+# us_gdp = us_gdp_data()
+# print()
+# print('us_gdp')
+# print(us_gdp)
 # us_gdp
-#                   gdp
+#                    gdp
 # Date
-# 1990-01-31   0.000000
-# 1990-02-28  -2.697505
-# 1990-03-31  -2.065278
+# 1990-01-31    0.000000
+# 1990-02-28   -2.697505
+# 1990-03-31   -2.065278
 # ...
 # 2017-08-31  366.236401
 #
@@ -268,8 +267,8 @@ print(us_gdp)
 # read data from pickle
 # use python standard method
 # rb read bytes
-pickle_in = open('../data/output/states.pickle', 'rb')
-HPI_data = pickle.load(pickle_in)
+# pickle_in = open('../data/output/states.pickle', 'rb')
+# HPI_data = pickle.load(pickle_in)
 # print()
 # print('HPI_data')
 # print(HPI_data)
@@ -278,11 +277,11 @@ HPI_data = pickle.load(pickle_in)
 # HPI_data.to_pickle('pickle.pickle')
 # HPI_data = pd.read_pickle('../data/output/states_change.pickle')
 
-HPI_Bench = hpi_benchmark()
-print()
-print('HPI_Bench head')
+# HPI_Bench = hpi_benchmark()
+# print()
+# print('HPI_Bench head')
 # print(HPI_Bench.head())
-print(HPI_Bench)
+# print(HPI_Bench)
 #             United_States
 # Date
 # 1975-01-31       0.000000
@@ -296,20 +295,20 @@ print(HPI_Bench)
 # [510 rows x 1 columns]
 
 # print()
-m30 = mortgage_30y()
+# m30 = mortgage_30y()
 # m30.columns = ['m30']
-print('m30')
-print(m30)
+# print('m30')
+# print(m30)
 # m30
 #                   m30
 # Date
-# 1990-01-31   0.000000
-# 1990-02-28   3.030303
-# 1990-03-31   3.737374
+# 1975-01-31   0.000000
+# 1975-02-28  -3.393425
+# 1975-03-31  -5.620361
 # ...
 # 2016-09-30 -63.308590
 #
-# [321 rows x 1 columns]
+# [501 rows x 1 columns]
 
 # HPI = HPI_Bench.join(m30)
 # print()
@@ -384,24 +383,23 @@ print(m30)
 # max     -0.765597
 # Name: m30, dtype: float64
 
-HPI_extended = HPI_Bench.join(m30)
-HPI_extended = HPI_extended.join(us_unemployment, how='left')
-HPI_extended = HPI_extended.join(us_gdp, how='left')
-HPI_extended = HPI_extended.join(sp500, how='left')
-HPI_extended = HPI_extended.dropna(how='any')
+# HPI_extended = HPI_Bench.join(m30)
+# HPI_extended = HPI_extended.join(us_unemployment, how='left')
+# HPI_extended = HPI_extended.join(us_gdp, how='left')
+# HPI_extended = HPI_extended.join(sp500, how='left')
+# HPI_extended = HPI_extended.dropna(how='any')
 
-print()
-print('HPI_extended')
-print(HPI_extended)
+# print()
+# print('HPI_extended')
+# print(HPI_extended)
 # HPI_extended
-#             United_States        m30  unemp_rate         gdp       sp500
+#             United_States        m30  unemp_rate         gdp        sp500
 # Date
-# 1990-01-31     198.790355   0.000000    0.000000    0.000000    0.000000
-# 1990-02-28     199.428229   3.030303   -1.851852   -2.697505    0.853904
-# 1990-03-31     200.320517   3.737374   -3.703704   -2.065278    3.300114
-# 1990-04-30     201.395317   4.747475    0.000000  -10.874318    0.522670
+# 1990-01-31     198.790355   4.984093    -15.6250    0.000000   327.487626
+# 1990-02-28     199.428229   8.165429    -17.1875   -2.697505   331.137961
+# 1990-03-31     200.320517   8.907741    -18.7500   -2.065278   341.595205
 # ...
-# 2014-04-30     520.061038 -56.161616   16.666667  443.953004  472.489980
+# 2014-04-30     520.061038 -53.976670     -1.5625  443.953004  2347.323821
 #
 # [292 rows x 5 columns]
 
@@ -411,12 +409,31 @@ print(HPI_extended)
 # print(HPI_extended_corr_drop_m30.describe())
 
 # wb write bytes
-pickle_out = open('../data/output/hpi_extended.pickle', 'wb')
-pickle.dump(HPI_extended, pickle_out)
-pickle_out.close()
+# pickle_out = open('../data/output/hpi_extended.pickle', 'wb')
+# pickle.dump(HPI_extended, pickle_out)
+# pickle_out.close()
 
-HPI_extended_corr = HPI_extended.corr()
-print()
-print('HPI_extended_corr')
-print(HPI_extended_corr.describe())
+# HPI_extended_corr = HPI_extended.corr()
+# print()
+# print('HPI_extended_corr')
+# print(HPI_extended_corr.describe())
+# HPI_extended_corr
+#        United_States       m30  unemp_rate       gdp     sp500
+# count       5.000000  5.000000    5.000000  5.000000  5.000000
+# mean        0.334073 -0.340524    0.219516  0.389615  0.309979
+# std         0.676343  0.759161    0.581322  0.692568  0.697543
+# min        -0.718112 -0.806364   -0.476906 -0.806364 -0.701241
+# 25%         0.087033 -0.718112   -0.101858  0.556788 -0.101858
+# 50%         0.556788 -0.701241    0.087033  0.589309  0.608341
+# 75%         0.744654 -0.476906    0.589309  0.608341  0.744654
+# max         1.000000  1.000000    1.000000  1.000000  1.000000
+
+# Tutorial 15 Rolling Apply and Mapping Functions
+# https://pythonprogramming.net/rolling-apply-mapping-functions-data-analysis-python-pandas-tutorial/
+
+# read data from pickle
+# use python standard method
+# rb read bytes
+pickle_in = open('../data/output/hpi_extended.pickle', 'rb')
+HPI_extended = pickle.load(pickle_in)
 
