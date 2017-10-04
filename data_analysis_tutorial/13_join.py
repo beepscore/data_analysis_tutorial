@@ -150,6 +150,32 @@ def mortgage_30y():
     return df
 
 
+def sp500_data():
+    df = quandl.get("YAHOO/INDEX_GSPC", trim_start="1975-01-01", authtoken=quandl_api_key)
+    df["Adjusted Close"] = (df["Adjusted Close"] - df["Adjusted Close"][0]) / df["Adjusted Close"][0] * 100.0
+    df = df.resample('M').mean()
+    df.rename(columns={'Adjusted Close': 'sp500'}, inplace=True)
+    df = df['sp500']
+    return df
+
+
+def gdp_data():
+    df = quandl.get("BCB/4385", trim_start="1975-01-01", authtoken=quandl_api_key)
+    df["Value"] = (df["Value"] - df["Value"][0]) / df["Value"][0] * 100.0
+    df = df.resample('M').mean()
+    df.rename(columns={'Value':'GDP'}, inplace=True)
+    df = df['GDP']
+    return df
+
+
+def us_unemployment():
+    df = quandl.get("ECPI/JOB_G", trim_start="1975-01-01", authtoken=quandl_api_key)
+    df["Unemployment Rate"] = (df["Unemployment Rate"] - df["Unemployment Rate"][0]) / df["Unemployment Rate"][0] * 100.0
+    df = df.resample('1D').mean()
+    df = df.resample('M').mean()
+    return df
+
+
 # comment out after writing states.pickle
 # grab_initial_state_data()
 
