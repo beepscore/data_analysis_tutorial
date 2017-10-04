@@ -392,33 +392,24 @@ HPI_extended = HPI_Bench.join(m30)
 # HPI_extended = HPI_Bench.join(us_unemployment, how='left')
 
 HPI_extended = HPI_extended.join(us_unemployment, how='left')
-
-
-# didn't work yet
-# HPI_extended = HPI_extended.join(m30, us_unemployment, us_gdp, how='left')
-# HPI_extended = HPI_Bench.join(m30, us_unemployment, sp500)
-# HPI_extended = HPI_Bench.join(m30, us_unemployment, us_gdp, sp500)
+HPI_extended = HPI_extended.join(us_gdp, how='left')
+HPI_extended = HPI_extended.join(sp500, how='left')
+HPI_extended = HPI_extended.dropna(how='any')
 
 print()
 print('HPI_extended')
 print(HPI_extended)
 # HPI_extended
-#             United_States        m30
+#             United_States        m30  unemp_rate         gdp       sp500
 # Date
-# 1975-01-31       0.000000        NaN
-# 1975-02-28       0.657772        NaN
-# 2016-07-31     611.941224 -65.252525
-# 2016-08-31     613.745236 -65.252525
-# 2016-09-30     614.060972 -65.050505
-# 2016-10-31     613.875717        NaN
-# 2016-11-30     613.469829        NaN
-# 2016-12-31     613.376717        NaN
-# 2017-01-31     614.855540        NaN
-# 2017-02-28     619.692660        NaN
-# 2017-03-31     628.246192        NaN
-# 2017-04-30     638.521461        NaN
-# 2017-05-31     648.421056        NaN
-# 2017-06-30     656.474194        NaN
+# 1990-01-31     198.790355   0.000000    0.000000    0.000000    0.000000
+# 1990-02-28     199.428229   3.030303   -1.851852   -2.697505    0.853904
+# 1990-03-31     200.320517   3.737374   -3.703704   -2.065278    3.300114
+# 1990-04-30     201.395317   4.747475    0.000000  -10.874318    0.522670
+# ...
+# 2014-04-30     520.061038 -56.161616   16.666667  443.953004  472.489980
+#
+# [292 rows x 5 columns]
 
 # HPI_extended_corr_drop_m30 = HPI_extended.corr().drop(['m30'])
 # print()
