@@ -120,14 +120,20 @@ crashlytics-build.properties
 venv/*
 
 # program data files
-data/*
+# data/input/*
+# data/output/*
+# !data/output/*.pickle
 
 # text files
 *.txt
+
+# be sure to ignore quandl key
+data/input/quandl_api_key.txt
+
 !requirements.txt
 
 # csv files
-*.csv
+# *.csv
 
 # excel files
 #*.xls
