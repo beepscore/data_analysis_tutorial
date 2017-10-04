@@ -388,10 +388,14 @@ print(m30)
 # Name: m30, dtype: float64
 
 # these worked
-# HPI_extended = HPI_Bench.join(m30)
-HPI_extended = HPI_Bench.join(us_unemployment, how='left')
+HPI_extended = HPI_Bench.join(m30)
+# HPI_extended = HPI_Bench.join(us_unemployment, how='left')
+
+HPI_extended = HPI_extended.join(us_unemployment, how='left')
+
 
 # didn't work yet
+# HPI_extended = HPI_extended.join(m30, us_unemployment, us_gdp, how='left')
 # HPI_extended = HPI_Bench.join(m30, us_unemployment, sp500)
 # HPI_extended = HPI_Bench.join(m30, us_unemployment, us_gdp, sp500)
 
