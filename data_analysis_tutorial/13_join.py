@@ -410,3 +410,13 @@ print(HPI_extended)
 # print('HPI_extended_corr_drop_m30')
 # print(HPI_extended_corr_drop_m30.describe())
 
+# wb write bytes
+pickle_out = open('../data/output/hpi_extended.pickle', 'wb')
+pickle.dump(HPI_extended, pickle_out)
+pickle_out.close()
+
+HPI_extended_corr = HPI_extended.corr()
+print()
+print('HPI_extended_corr')
+print(HPI_extended_corr.describe())
+
