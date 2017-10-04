@@ -387,13 +387,32 @@ print(m30)
 # max     -0.765597
 # Name: m30, dtype: float64
 
-# HPI_extended = HPI_data.join(m30, us_unemployment, us_gdp, sp500)
-# HPI_extended = HPI_data.join(m30, us_unemployment, sp500)
-# HPI_extended = HPI_data.join(m30, us_unemployment, how='left')
-# HPI_extended = HPI_data.join(m30, us_unemployment, sp500)
-# print()
-# print('HPI_extended')
-# print(HPI_extended)
+# HPI_extended = HPI_Bench.join(m30, us_unemployment, us_gdp, sp500)
+# HPI_extended = HPI_Bench.join(m30, us_unemployment, sp500)
+# HPI_extended = HPI_Bench.join(m30, us_unemployment, how='left')
+# HPI_extended = HPI_Bench.join(m30, us_unemployment, sp500)
+HPI_extended = HPI_Bench.join(m30)
+print()
+print('HPI_extended')
+print(HPI_extended)
+# HPI_extended
+#             United_States        m30
+# Date
+# 1975-01-31       0.000000        NaN
+# 1975-02-28       0.657772        NaN
+# 2016-07-31     611.941224 -65.252525
+# 2016-08-31     613.745236 -65.252525
+# 2016-09-30     614.060972 -65.050505
+# 2016-10-31     613.875717        NaN
+# 2016-11-30     613.469829        NaN
+# 2016-12-31     613.376717        NaN
+# 2017-01-31     614.855540        NaN
+# 2017-02-28     619.692660        NaN
+# 2017-03-31     628.246192        NaN
+# 2017-04-30     638.521461        NaN
+# 2017-05-31     648.421056        NaN
+# 2017-06-30     656.474194        NaN
+
 # HPI_extended_corr_drop_m30 = HPI_extended.corr().drop(['m30'])
 # print()
 # print('HPI_extended_corr_drop_m30')
