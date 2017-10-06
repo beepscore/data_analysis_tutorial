@@ -19,21 +19,24 @@ quandl_api_key = open(input_file_path, 'r').read().rstrip()
 # read data from tutorial 14 pickle, use pandas method
 housing_data = pd.read_pickle('../data/output/hpi_extended.pickle')
 
+# percent change relative to previous row, not relative to row 0
+# Note I already did dropna before pickling.
 housing_data = housing_data.pct_change()
 
+# pct_change generates values like +/- infinity in row 0. Replace them with NaN.
 housing_data.replace([np.inf, -np.inf], np.nan, inplace=True)
 
 # shift up one row
 housing_data['US_HPI_future'] = housing_data['United_States'].shift(-1)
 
-# I think I already did dropna before pickling, tutorial shows to do it now.
 housing_data.dropna(inplace=True)
 
-# supervised machine learning has features and label
-# features are independent variables like gdp, unemp_rate
-# generate the label fut_hpi
 
 def create_labels(cur_hpi, fut_hpi):
+    """ supervised machine learning has features and label
+    features are independent variables like gdp, unemp_rate
+    generate the label fut_hpi
+    """
     if fut_hpi > cur_hpi:
         return 1
     else:
