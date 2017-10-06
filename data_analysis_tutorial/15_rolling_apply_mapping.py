@@ -1,5 +1,6 @@
 # Tutorial 15 Rolling Apply and Mapping Functions
 # https://pythonprogramming.net/rolling-apply-mapping-functions-data-analysis-python-pandas-tutorial/
+# tutorial author said he uses map function frequently, almost never uses rolling_apply
 
 import pandas as pd
 from matplotlib import style
@@ -50,9 +51,9 @@ def moving_average(values):
     return mean(values)
 
 
-# generate the label
+# use map to generate the label
+# map function create_labels from input features to column 'label'
 # features are independent variables like gdp, unemp_rate
-# map function create_labels from input lists to column 'label'
 housing_data['label'] = list(map(create_labels, housing_data['United_States'], housing_data['US_HPI_future']))
 
 # print(housing_data.head())
