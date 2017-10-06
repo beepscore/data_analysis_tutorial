@@ -33,17 +33,22 @@ housing_data.dropna(inplace=True)
 
 
 def create_labels(cur_hpi, fut_hpi):
-    """ supervised machine learning has features and label
-    features are independent variables like gdp, unemp_rate
-    generate the label fut_hpi
+    """ predict.
+    will feed into machine learning classifier.
+    supervised machine learning has features and label.
     """
     if fut_hpi > cur_hpi:
         return 1
     else:
         return 0
 
+
+# generate the label
+# features are independent variables like gdp, unemp_rate
+# map function create_labels from input lists to column 'label'
 housing_data['label'] = list(map(create_labels, housing_data['United_States'], housing_data['US_HPI_future']))
-print(housing_data.head())
+
+# print(housing_data.head())
 #             United_States       m30  unemp_rate       gdp     sp500  \
 # Date
 # 1990-03-31       0.004474  0.090909    0.090909 -0.234375  0.031580
@@ -59,5 +64,6 @@ print(housing_data.head())
 # 1990-05-31       0.005138      0
 # 1990-06-30       0.003759      0
 # 1990-07-31       0.000536      0
+
 
 
