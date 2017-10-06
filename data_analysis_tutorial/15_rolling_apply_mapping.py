@@ -96,8 +96,14 @@ housing_data['label'] = list(map(get_label, housing_data['United_States'], housi
 # Choosing the right estimator
 # http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html
 # by convention, features uppercase X, label lowercase y.
+
+# http://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.DataFrame.drop.html
+# housing_data_dropped = housing_data.drop(['label', 'US_HPI_future'], 1)
+# explicitly show parameter names
+housing_data_dropped = housing_data.drop(labels=['label', 'US_HPI_future'], axis=1)
+
 # convert to numpy array
-X = np.array(housing_data.drop(['label', 'US_HPI_future'], 1))
+X = np.array(housing_data_dropped)
 print(X)
 # [[  4.47422978e-03   9.09090909e-02   9.09090909e-02  -2.34375000e-01 3.15797208e-02]
 #  [  5.36539969e-03   1.19047619e-01  -1.66666667e-01   4.26530612e+00 -3.47581915e-02]
