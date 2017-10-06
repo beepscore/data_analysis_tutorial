@@ -114,7 +114,7 @@ X = np.array(housing_data_dropped)
 #  [  1.26001924e-02  -7.79727096e-03   0.00000000e+00   4.89835814e-02 7.23154688e-03]]
 
 # scale -1 to +1
-X = preprocessing.scale(X)
+# X = preprocessing.scale(X)
 # print(X)
 # [[ 0.14408056  0.23373543  0.27207146 -0.39346702  0.51027382]
 #  [ 0.25286537  0.31922935 -0.58269194  4.49674873 -0.90138653]
@@ -126,3 +126,18 @@ X = preprocessing.scale(X)
 
 # y 'label' will be the classification
 y = np.array(housing_data['label'])
+
+# test size 20% of the data, train on 80%
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
+
+# classifier support vector machine / support vector classification
+clf = svm.SVC(kernel='linear')
+clf.fit(X_train, y_train)
+
+# print(clf.score(X_test, y_test))
+# 0.51724137931
+# not very good!
+# tutorial got 0.74
+# tutorial X indludes 55 columns, hpi for US and for every state
+# housing_data has ~ 5 columns, hpi for us but not for any state.
+
