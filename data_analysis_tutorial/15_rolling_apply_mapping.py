@@ -33,10 +33,9 @@ housing_data['US_HPI_future'] = housing_data['United_States'].shift(-1)
 housing_data.dropna(inplace=True)
 
 
-def create_labels(cur_hpi, fut_hpi):
-    """ predict.
-    will feed into machine learning classifier.
-    supervised machine learning has features and label.
+def get_label(cur_hpi, fut_hpi):
+    """ return a label that can be used as input to a machine learning classifier.
+    supervised machine learning uses features and label.
     """
     if fut_hpi > cur_hpi:
         return 1
@@ -51,10 +50,9 @@ def moving_average(values):
     return mean(values)
 
 
-# use map to generate the label
-# map function create_labels from input features to column 'label'
+# map function get_label over input feature lists to column 'label'
 # features are independent variables like gdp, unemp_rate
-housing_data['label'] = list(map(create_labels, housing_data['United_States'], housing_data['US_HPI_future']))
+housing_data['label'] = list(map(get_label, housing_data['United_States'], housing_data['US_HPI_future']))
 
 # print(housing_data.head())
 #             United_States       m30  unemp_rate       gdp     sp500  \
