@@ -5,7 +5,7 @@
 import pandas as pd
 from matplotlib import style
 import numpy as np
-from sklearn import svm, preprocessing, cross_validation
+from sklearn import svm, preprocessing, model_selection
 
 from statistics import mean
 style.use('fivethirtyeight')
