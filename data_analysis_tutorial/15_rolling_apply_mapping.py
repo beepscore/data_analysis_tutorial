@@ -43,6 +43,13 @@ def create_labels(cur_hpi, fut_hpi):
         return 0
 
 
+def moving_average(values):
+    """pandas has a moving average function,
+    implement our own to call in an example for rolling apply
+    """
+    return mean(values)
+
+
 # generate the label
 # features are independent variables like gdp, unemp_rate
 # map function create_labels from input lists to column 'label'
@@ -65,5 +72,24 @@ housing_data['label'] = list(map(create_labels, housing_data['United_States'], h
 # 1990-06-30       0.003759      0
 # 1990-07-31       0.000536      0
 
-
-
+# TODO: fix warning
+# FutureWarning: pd.rolling_apply is deprecated for Series and will be removed in a future version, replace with
+# Series.rolling(window=10,center=False).apply(func=<function>,args=<tuple>,kwargs=<dict>)
+#  housing_data['ma_apply_example'] = pd.rolling_apply(housing_data['m30'], 10, moving_average)
+housing_data['ma_apply_example'] = pd.rolling_apply(housing_data['m30'], 10, moving_average)
+print(housing_data.tail())
+#             United_States       m30  unemp_rate       gdp     sp500  \
+# Date
+# 2013-11-30      -0.002459 -0.013359   -0.250000 -0.030867  0.029335
+# 2013-12-31      -0.002382 -0.038685   -0.500000 -0.013613  0.024612
+# 2014-01-31       0.000747  0.006036   -0.333333 -0.045316 -0.037129
+# 2014-02-28       0.006798  0.026000    0.500000  0.008535  0.045063
+# 2014-03-31       0.012600 -0.007797    0.000000  0.048984  0.007232
+#
+#             US_HPI_future  label  ma_apply_example
+# Date
+# 2013-11-30      -0.002382      1         -0.014369
+# 2013-12-31       0.000747      1         -0.016244
+# 2014-01-31       0.006798      1         -0.014963
+# 2014-02-28       0.012600      1         -0.014410
+2014-03-31       0.014471      1         -0.013685
