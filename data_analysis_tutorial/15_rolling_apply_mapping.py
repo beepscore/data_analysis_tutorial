@@ -73,12 +73,8 @@ housing_data['label'] = list(map(create_labels, housing_data['United_States'], h
 # 1990-06-30       0.003759      0
 # 1990-07-31       0.000536      0
 
-# TODO: fix warning
-# FutureWarning: pd.rolling_apply is deprecated for Series and will be removed in a future version, replace with
-# Series.rolling(window=10,center=False).apply(func=<function>,args=<tuple>,kwargs=<dict>)
-#  housing_data['ma_apply_example'] = pd.rolling_apply(housing_data['m30'], 10, moving_average)
-housing_data['ma_apply_example'] = pd.rolling_apply(housing_data['m30'], 10, moving_average)
-print(housing_data.tail())
+housing_data['ma_apply_example'] = housing_data['m30'].rolling(window=10, center=False).apply(func=moving_average)
+# print(housing_data.tail())
 #             United_States       m30  unemp_rate       gdp     sp500  \
 # Date
 # 2013-11-30      -0.002459 -0.013359   -0.250000 -0.030867  0.029335
