@@ -5,6 +5,8 @@
 import pandas as pd
 from matplotlib import style
 import numpy as np
+from sklearn import svm, preprocessing, cross_validation
+
 from statistics import mean
 style.use('fivethirtyeight')
 
@@ -71,7 +73,7 @@ housing_data['label'] = list(map(get_label, housing_data['United_States'], housi
 # 1990-06-30       0.003759      0
 # 1990-07-31       0.000536      0
 
-housing_data['ma_apply_example'] = housing_data['m30'].rolling(window=10, center=False).apply(func=moving_average)
+# housing_data['ma_apply_example'] = housing_data['m30'].rolling(window=10, center=False).apply(func=moving_average)
 # print(housing_data.tail())
 #             United_States       m30  unemp_rate       gdp     sp500  \
 # Date
@@ -88,3 +90,12 @@ housing_data['ma_apply_example'] = housing_data['m30'].rolling(window=10, center
 # 2014-01-31       0.006798      1         -0.014963
 # 2014-02-28       0.012600      1         -0.014410
 # 2014-03-31       0.014471      1         -0.013685
+
+# Tutorial 16 Scikit Learn
+# https://pythonprogramming.net/scikit-learn-sklearn-machine-learning-data-analysis-python-pandas-tutorial/
+# Choosing the right estimator
+# http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html
+# by convention, features uppercase X, label lowercase y.
+# convert to numpy array
+X = np.array(housing_data.drop(['label', 'US_HPI_future'], 1))
+print(X)
