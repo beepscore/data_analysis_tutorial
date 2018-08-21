@@ -34,7 +34,7 @@ Using Anaconda 4.4.0 which comes with Python 3.6.1
 In terminal  
 
     cd data_analysis_tutorial
-    source activate beepscore
+    conda activate beepscore
 
 ## Appendix - run program
 
